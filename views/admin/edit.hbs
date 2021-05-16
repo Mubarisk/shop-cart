@@ -1,0 +1,45 @@
+<section>
+    <div class="container mt-5">
+        <h3>edit product</h3>
+        {{#each product}}
+        {{#if this.name}}
+        <form action="/admin/edit-product/{{this._id}}" enctype="multipart/form-data" method="POST"> 
+  <div class="form-group">
+    
+    <label for="exampleFormControlInput1">name</label>
+    <input type="name" name="name" value="{{this.name}}" class="form-control" id="exampleFormControlInput1" >
+  </div>
+ 
+    
+  <div class="form-group">
+    <label for="exampleFormControlInput1">category</label>
+    <input type="name" name="category"  value="{{this.category}}" class="form-control" id="exampleFormControlInput1" >
+  </div>
+ <div class="form-group">
+    <label for="exampleFormControlInput1">price</label>
+    <input type="name" name="price" class="form-control" value="{{this.price}}" id="exampleFormControlInput1" >
+  </div>
+  <div class="form-group">
+      <label>image</label>
+      <img src="/product-images/{{this._id}}.jpg" style="height: 80px;width:80px" alt="err"  class="pt-3 " id="imageview">
+  </div>
+ <div class="form-group">
+    <label for="exampleFormControlInput1">image</label>
+    <input type="file" name="image" class="form-control" id="exampleFormControlInput1" onchange="viewimage(event)" >
+  </div>
+ 
+  <div class="container">
+        <button type="submit" class="btn-success">edit product</button>
+    </div>
+  
+</form>
+{{/if}}
+  {{/each}}
+    </div>
+   
+</section>
+<script>
+  function viewimage(event){
+    document.getElementById('imageview').src=URL.createObjectURL(event.target.files[0])
+  }
+</script>

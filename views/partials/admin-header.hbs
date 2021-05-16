@@ -1,0 +1,55 @@
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <a class="navbar-brand" href="/admin/view">admin panel</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+        aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav mr-auto">
+            {{#if adminDetails}}
+           
+            <li class="nav-item">
+                <a class="nav-link" href="/admin/orders">all orders</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="/admin/shipped-product">shipped-products</a>
+            </li>
+
+            <li class="nav-item">
+
+                <a href="/admin/add-product" class="btn btn-info">+ add product +</a>
+
+
+            </li>
+            {{/if}}
+
+
+
+        </ul>
+        <div class="dropdown">
+            <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton"
+                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                {{#if adminDetails}}
+                {{adminDetails.username}}
+                {{else}}
+                Account
+                {{/if}}
+            </button>
+            {{#if adminDetails}}
+            <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                <a class="dropdown-item" href='/admin/admin-logout'>Logout</a>
+            </div>
+            {{else}}
+            <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                <a class="dropdown-item" href='/admin/'>Login</a>
+            </div>
+
+
+            {{/if}}
+
+
+
+        </div>
+    </div>
+</nav>

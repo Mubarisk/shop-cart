@@ -1,0 +1,68 @@
+<section>
+    <div class="container">
+        <table class="table mt-5">
+            <thead>
+                <tr>
+                    <th scope="col">item</th>
+                    <th scope="col">name</th>
+                    <th scope="col">Price</th>
+                    <th scope="col">quantity</th>
+                    <th scope="col">remove</th>
+
+                </tr>
+            </thead>
+            <tbody>
+                {{#each DATA}}
+
+                <tr>
+                    {{#each this.pro}}
+                    {{#if this.name}}
+                    <td><img style="width: 70px;height:70px" src="/product-images/{{this._id}}.jpg"></td>
+
+                    <td>{{this.name}}</td>
+                    <td>Rs.{{this.price}}</td>
+                    {{/if}}
+                    {{/each}}
+                    <td>
+
+                        <a class="btn btn-primary"
+                            onclick="qtyChanger('{{this._id}}','{{this.item}}',-1,'{{this.qty}}')">-</a>
+                        <span id="qty">{{this.qty}} </span> <a class="btn btn-primary"
+                            onclick="qtyChanger('{{this._id}}','{{this.item}}',1,'{{this.qty}}')">+</a>
+                    </td>
+                    <td><a href="/remove-product/{{this._id}}/item/{{this.item}}" class="btn btn-danger">remove</a></td>
+                </tr>
+
+                {{/each}}
+            </tbody>
+        </table>
+        <hr>
+        {{#if total}}
+        <span class="float-right  mr-5 "> Total amount : Rs. {{total}}</span><br>
+        <a href="/address-panel" class="btn btn-success float-right mt-3 mr-5">check out</a>
+        {{else}}
+        <h2 class="text-center">empty cart
+            <br>
+            <a href="/">go back to the home</a>
+        </h2>
+        {{/if}}
+    </div>
+</section>
+<script>
+    function qtyChanger(id, item, number, presentQty) {
+        $.ajax({
+            url: "/qtyChanger",
+            method: 'post',
+            data: {
+                cartId: id,
+                itemId: item,
+                qty: number,
+                presentQty: presentQty
+            },
+            success: (data) => { location.href = '/cart' }
+
+
+        })
+
+    };
+</script>
